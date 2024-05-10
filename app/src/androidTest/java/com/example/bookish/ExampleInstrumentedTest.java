@@ -1,4 +1,4 @@
-package com.example.bookish_app;
+package com.example.bookish;
 
 import android.content.Context;
 

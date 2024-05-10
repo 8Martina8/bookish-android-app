@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.bookish_app"
+    namespace = "com.example.bookish"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.bookish_app"
+        applicationId = "com.example.bookish"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

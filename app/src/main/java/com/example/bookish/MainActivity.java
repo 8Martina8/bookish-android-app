@@ -1,4 +1,4 @@
-package com.example.bookish_app;
+package com.example.bookish;
 
 import android.os.Bundle;
 
@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
 
 public class MainActivity extends AppCompatActivity {
 
