@@ -1,9 +1,15 @@
 package com.example.bookish.data.models;
 
-import java.io.Serializable;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.List;
 
-public class Book implements Serializable {
+//@Entity
+public class Book {
+    //@PrimaryKey(autoGenerate = false)
+    //@NonNull
     private final String id;
     private final VolumeInfo volumeInfo;
     private final SaleInfo saleInfo;
@@ -33,7 +39,7 @@ public class Book implements Serializable {
         return accessInfo;
     }
 
-    public static class VolumeInfo implements Serializable {
+    public static class VolumeInfo {
         private String title;
         private List<String> authors;
         private String publisher;
@@ -53,9 +59,57 @@ public class Book implements Serializable {
         //private String infoLink;
         //private String canonicalVolumeLink;
 
+
+        public String getTitle() {
+            return title;
+        }
+
+        public List<String> getAuthors() {
+            return authors;
+        }
+
+        public String getPublisher() {
+            return publisher;
+        }
+
+        public String getPublishedDate() {
+            return publishedDate;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public int getPageCount() {
+            return pageCount;
+        }
+
+        public String getMainCategory() {
+            return mainCategory;
+        }
+
+        public List<String> getCategories() {
+            return categories;
+        }
+
+        public double getAverageRating() {
+            return averageRating;
+        }
+
+        public int getRatingsCount() {
+            return ratingsCount;
+        }
+
+        public ImageLinks getImageLinks() {
+            return imageLinks;
+        }
+
+        public String getLanguage() {
+            return language;
+        }
     }
 
-    public static class SaleInfo implements Serializable {
+    public static class SaleInfo {
         private String country;
         private String saleability;
         private boolean isEbook;
@@ -65,7 +119,7 @@ public class Book implements Serializable {
 
     }
 
-    public static class AccessInfo implements Serializable {
+    public static class AccessInfo {
         private String country;
         private String viewability;
         //private boolean embeddable;
@@ -89,7 +143,7 @@ public class Book implements Serializable {
 //        private String thickness;
 ////    }
 
-    public static class ImageLinks implements Serializable {
+    public static class ImageLinks {
         private String smallThumbnail;
         private String thumbnail;
         private String small;
@@ -98,19 +152,19 @@ public class Book implements Serializable {
         private String extraLarge;
     }
 
-    public static class Price implements Serializable {
+    public static class Price {
         private double amount;
         private String currencyCode;
 
     }
 
-    public static class Epub implements Serializable {
+    public static class Epub {
         private boolean isAvailable;
         //private String acsTokenLink;
 
     }
 
-    public static class Pdf implements Serializable {
+    public static class Pdf{
         private boolean isAvailable;
 
     }

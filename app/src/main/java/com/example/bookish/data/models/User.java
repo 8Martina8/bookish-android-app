@@ -1,5 +1,12 @@
 package com.example.bookish.data.models;
+
+import androidx.room.Entity;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+
+@Entity(indices = {@Index(value = {"email"}, unique = true)})
 public class User {
+    @PrimaryKey(autoGenerate = true)
     private Integer userID;
     private String username;
     private String password;
