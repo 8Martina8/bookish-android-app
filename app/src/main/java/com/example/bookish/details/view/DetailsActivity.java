@@ -25,5 +25,7 @@ public class DetailsActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        // Retrieve the Book object from the intent
+        Book book = (Book) getIntent().getSerializableExtra("BOOK");
     }
 }

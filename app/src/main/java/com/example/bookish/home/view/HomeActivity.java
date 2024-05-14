@@ -1,5 +1,6 @@
 package com.example.bookish.home.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -19,6 +20,7 @@ import com.example.bookish.data.models.Book;
 import com.example.bookish.data.models.BooksResponse;
 import com.example.bookish.data.network.ApiClient;
 import com.example.bookish.data.network.RemoteDataSource;
+import com.example.bookish.details.view.DetailsActivity;
 
 import java.util.List;
 import java.util.Random;
@@ -61,9 +63,18 @@ public class HomeActivity extends AppCompatActivity {
                     bookItemAdapter=new BookItemAdapter(searchedBooks);
                     recyclerView.setAdapter(bookItemAdapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this, RecyclerView.HORIZONTAL, false));
-                    // Process the list of books
+                    bookItemAdapter.setOnItemClickListener(new BookItemAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(Book book) {
+                            Intent intent = new Intent(HomeActivity.this, DetailsActivity.class);
+                            intent.putExtra("BOOK", book);
+                            HomeActivity.this.startActivity(intent);
+                        }
+
+                        });
+
                     for (Book book : searchedBooks) {
-                        Log.d("TestingSearchBooks", "Search Result: "+searchedBooks);
+                        //Log.d("TestingSearchBooks", "Search Result: "+searchedBooks);
                     }
 
                 } else {
@@ -71,6 +82,7 @@ public class HomeActivity extends AppCompatActivity {
                     // Handle unsuccessful response
                     // For example, display an error message
                 }
+
             }
 
 
