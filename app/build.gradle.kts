@@ -56,6 +56,11 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor")
     implementation ("com.github.bumptech.glide:glide:4.11.0")
 
+    implementation ("com.squareup.picasso:picasso:2.8")
+
+    // Glide
+    implementation ("com.github.bumptech.glide:glide:4.13.2")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.13.2")
 
 
     val roomVersion = "2.6.1"

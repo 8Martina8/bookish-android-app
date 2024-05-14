@@ -7,4 +7,41 @@
     android:layout_height="match_parent"
     tools:context=".search.view.SearchActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchBooksRecyclerView"
+        android:layout_width="412dp"
+        android:layout_height="577dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/searchBooksBtn"
+        android:layout_width="105dp"
+        android:layout_height="67dp"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/searchBooksRecyclerView"
+        app:layout_constraintEnd_toStartOf="@+id/searchQueryET"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.556" />
+
+    <EditText
+        android:id="@+id/searchQueryET"
+        android:layout_width="231dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="search for books"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.859"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.073" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
