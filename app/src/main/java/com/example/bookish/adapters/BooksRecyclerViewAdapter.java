@@ -4,10 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -56,6 +58,8 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
         } else {
             holder.authorName.setText("Unknown Author");
         }
+
+        holder.cardView.startAnimation(AnimationUtils.loadAnimation(context, R.anim.anim_search_cards));
     }
 
     @Override
@@ -64,11 +68,13 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
     }
 
     public static class BookViewHolder extends RecyclerView.ViewHolder {
+        CardView cardView;
         ImageView imageView;
         TextView rating, bookTitle, authorName;
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            cardView = itemView.findViewById(R.id.book_card);
             imageView = itemView.findViewById(R.id.img_book);
 
             rating = itemView.findViewById(R.id.txt_rating);

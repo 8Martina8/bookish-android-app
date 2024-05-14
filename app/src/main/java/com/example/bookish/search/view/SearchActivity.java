@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,15 +35,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SearchActivity extends AppCompatActivity {
-    private LocalDatabaseImpl localDatabase;
     private RemoteDataSource apiClient;
 
     private RecyclerView recyclerView;
     private BooksRecyclerViewAdapter adapter;
     private ArrayList<Book> books;
 
-    private Button searchBtn;
-    private EditText searchQueryET;
+    private SearchView searchView;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -57,7 +56,6 @@ public class SearchActivity extends AppCompatActivity {
             return insets;
         });
 
-        localDatabase = new LocalDatabaseImpl(this);
         apiClient = new ApiClient();
 
         books = new ArrayList<>();
@@ -66,13 +64,21 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
-        searchQueryET = findViewById(R.id.searchQueryET);
+        searchView = findViewById(R.id.booksSearchView);
+        searchView.clearFocus();
 
-        searchBtn = findViewById(R.id.searchBooksBtn);
-        searchBtn.setOnClickListener(v -> {
-            String query = searchQueryET.getText().toString();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchBooks(query);
+                searchView.clearFocus();
+                return true;
+            }
 
-            searchBooks(query);
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
         });
     }
 
@@ -103,6 +109,7 @@ public class SearchActivity extends AppCompatActivity {
     private void updateSearchResults() {
         adapter.setBooks(books);
         adapter.notifyDataSetChanged();
+        recyclerView.scrollToPosition(0);
     }
 
     private void toast(String text) {
