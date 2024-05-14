@@ -7,4 +7,166 @@
     android:layout_height="match_parent"
     tools:context=".details.view.DetailsActivity">
 
+    <TextView
+        android:id="@+id/bookTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="The Color Purple"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookImageView" />
+
+    <ImageView
+        android:id="@+id/bookImageView"
+        android:layout_width="398dp"
+        android:layout_height="362dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/authorNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="by Alice Walker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookTitleTextView" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/numberOfPagesTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/authorNameTextView"
+        app:srcCompat="@drawable/menu_book_24dp_fill0_wght400_grad0_opsz24" />
+
+    <TextView
+        android:id="@+id/numberOfPagesTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="120"
+        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/authorNameTextView" />
+
+    <TextView
+        android:id="@+id/languageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="ENG"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.024"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintTop_toBottomOf="@+id/authorNameTextView" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/reviewTextView"
+        app:layout_constraintStart_toEndOf="@+id/numberOfPagesTextView"
+        app:layout_constraintTop_toBottomOf="@+id/authorNameTextView"
+        app:srcCompat="@drawable/star_24dp_fill0_wght400_grad0_opsz24" />
+
+    <TextView
+        android:id="@+id/reviewTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="4.8"
+        app:layout_constraintEnd_toStartOf="@+id/imageView7"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/authorNameTextView" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/languageTextView"
+        app:layout_constraintStart_toEndOf="@+id/reviewTextView"
+        app:layout_constraintTop_toBottomOf="@+id/authorNameTextView"
+        app:srcCompat="@drawable/language_24dp_fill0_wght400_grad0_opsz24" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="|"
+        android:textColor="#8A8585"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView7"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toEndOf="@+id/reviewTextView"
+        app:layout_constraintTop_toBottomOf="@+id/authorNameTextView" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="|"
+        android:textColor="#8A8585"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toEndOf="@+id/numberOfPagesTextView"
+        app:layout_constraintTop_toBottomOf="@+id/authorNameTextView" />
+
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="370dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reviewTextView" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
