@@ -42,7 +42,11 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
 
     @Override
     public void onBindViewHolder(@NonNull BooksRecyclerViewAdapter.BookViewHolder holder, int position) {
-        Glide.with(context).load(books.get(position).getVolumeInfo().getImageLinks().getThumbnail()).into(holder.imageView);
+        String imageURL = "https://angelbookhouse.com/assets/front/img/product/edition_placeholder.png";
+        if (books.get(position).getVolumeInfo().getImageLinks() != null) {
+            imageURL = books.get(position).getVolumeInfo().getImageLinks().getThumbnail();
+        }
+        Glide.with(context).load(imageURL).into(holder.imageView);
 
         holder.rating.setText(String.valueOf(books.get(position).getVolumeInfo().getAverageRating()));
         holder.bookTitle.setText(books.get(position).getVolumeInfo().getTitle());
