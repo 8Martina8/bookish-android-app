@@ -9,7 +9,7 @@ public class ApiClient implements RemoteDataSource{
     private static final ApiService apiService = RetrofitHelper.getRetrofit().create(ApiService.class);
     @Override
     public Call<BooksResponse> searchBooks(String query) {
-        return apiService.searchBooks(query);
+        return apiService.searchBooks(query,"en");
     }
 
     @Override

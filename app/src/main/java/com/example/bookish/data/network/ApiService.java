@@ -10,7 +10,7 @@ import retrofit2.http.Query;
 
 public interface ApiService {
     @GET("volumes")
-    Call<BooksResponse> searchBooks(@Query("q") String query);
+    Call<BooksResponse> searchBooks(@Query("q") String query, @Query("langRestrict") String lang);
 
     @GET("volumes/{id}")
     Call<Book> getBookById(@Path("id") String id);
