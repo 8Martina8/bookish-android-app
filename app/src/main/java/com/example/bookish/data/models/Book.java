@@ -4,10 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.util.List;
 
 //@Entity
-public class Book {
+public class Book implements Serializable {
     //@PrimaryKey(autoGenerate = false)
     //@NonNull
     private final String id;
@@ -39,7 +40,7 @@ public class Book {
         return accessInfo;
     }
 
-    public static class VolumeInfo {
+    public static class VolumeInfo implements Serializable{
         private String title;
         private List<String> authors;
         private String publisher;
@@ -109,7 +110,7 @@ public class Book {
         }
     }
 
-    public static class SaleInfo {
+    public static class SaleInfo implements Serializable {
         private String country;
         private String saleability;
         private boolean isEbook;
@@ -142,7 +143,7 @@ public class Book {
         }
     }
 
-    public static class AccessInfo {
+    public static class AccessInfo implements Serializable{
         private String country;
         private String viewability;
         //private boolean embeddable;
@@ -189,7 +190,7 @@ public class Book {
 //        private String thickness;
 ////    }
 
-    public static class ImageLinks {
+    public static class ImageLinks implements Serializable{
         private String smallThumbnail;
         private String thumbnail;
         private String small;
@@ -235,7 +236,7 @@ public class Book {
         }
     }
 
-    public static class Epub {
+    public static class Epub implements Serializable{
         private boolean isAvailable;
         //private String acsTokenLink;
 
@@ -245,7 +246,7 @@ public class Book {
         }
     }
 
-    public static class Pdf{
+    public static class Pdf implements Serializable{
         private boolean isAvailable;
 
         public boolean isAvailable() {
