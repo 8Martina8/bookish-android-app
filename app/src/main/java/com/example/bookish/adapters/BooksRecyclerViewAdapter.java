@@ -1,12 +1,14 @@
 package com.example.bookish.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.bookish.R;
 import com.example.bookish.data.models.Book;
+import com.example.bookish.details.view.DetailsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -44,20 +47,29 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
 
     @Override
     public void onBindViewHolder(@NonNull BooksRecyclerViewAdapter.BookViewHolder holder, int position) {
+        Book book = books.get(position);
+
         String imageURL = "https://angelbookhouse.com/assets/front/img/product/edition_placeholder.png";
-        if (books.get(position).getVolumeInfo().getImageLinks() != null) {
-            imageURL = books.get(position).getVolumeInfo().getImageLinks().getThumbnail();
+        if (book.getVolumeInfo().getImageLinks() != null) {
+            imageURL = book.getVolumeInfo().getImageLinks().getThumbnail();
         }
         Glide.with(context).load(imageURL).into(holder.imageView);
 
-        holder.rating.setText(String.valueOf(books.get(position).getVolumeInfo().getAverageRating()));
-        holder.bookTitle.setText(books.get(position).getVolumeInfo().getTitle());
-        List<String> authors = books.get(position).getVolumeInfo().getAuthors();
+        holder.rating.setText(String.valueOf(book.getVolumeInfo().getAverageRating()));
+        holder.bookTitle.setText(book.getVolumeInfo().getTitle());
+        List<String> authors = book.getVolumeInfo().getAuthors();
         if (authors != null && !authors.isEmpty()) {
             holder.authorName.setText(authors.get(0));
         } else {
             holder.authorName.setText("Unknown Author");
         }
+
+        holder.cardView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetailsActivity.class);
+            intent.putExtra("book_id", book.getId());
+
+            context.startActivity(intent);
+        });
 
         holder.cardView.startAnimation(AnimationUtils.loadAnimation(context, R.anim.anim_search_cards));
     }
