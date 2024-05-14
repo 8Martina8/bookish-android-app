@@ -72,9 +72,6 @@ public class SearchActivity extends AppCompatActivity {
             String query = searchQueryET.getText().toString();
 
             searchBooks(query);
-
-            adapter.setBooks(books);
-            adapter.notifyDataSetChanged();
         });
     }
 
@@ -88,6 +85,7 @@ public class SearchActivity extends AppCompatActivity {
                     List<Book> searchedBooks = booksResponse.getItems();
 
                     books = (ArrayList<Book>) searchedBooks;
+                    updateSearchResults();
                 } else {
                     toast("No Result!");
                 }
@@ -98,6 +96,12 @@ public class SearchActivity extends AppCompatActivity {
                 toast("API Call Failed!");
             }
         });
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void updateSearchResults() {
+        adapter.setBooks(books);
+        adapter.notifyDataSetChanged();
     }
 
     private void toast(String text) {
