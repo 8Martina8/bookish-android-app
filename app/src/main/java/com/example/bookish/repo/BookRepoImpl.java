@@ -1,5 +1,7 @@
 package com.example.bookish.repo;
 
+import android.util.Log;
+
 import com.example.bookish.data.local.LocalDatabase;
 import com.example.bookish.data.models.Book;
 import com.example.bookish.data.models.BooksResponse;
@@ -10,6 +12,8 @@ import com.example.bookish.data.network.RemoteDataSource;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BookRepoImpl implements BookRepo {
 
@@ -64,7 +68,26 @@ public class BookRepoImpl implements BookRepo {
     }
 
     @Override
-    public Call<Book> getBookById(String id) {
-        return remoteDataSource.getBookById(id);
+    public Book getBookById(String bookId) {
+        Call<Book> bookCall = remoteDataSource.getBookById(bookId);
+        final Book[] book = new Book[1];
+        bookCall.enqueue(new Callback<Book>() {
+            @Override
+            public void onResponse(Call<Book> call, Response<Book> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                     book[0] = response.body();
+                } else {
+                    // Handle unsuccessful response
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Book> call, Throwable t) {
+
+            }
+
+
+        });
+        return book[0];
     }
 }

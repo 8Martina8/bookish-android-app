@@ -13,7 +13,7 @@ public interface BookRepo {
 
     Call<BooksResponse> searchBooks(String query);
 
-    Call<Book> getBookById(String id);
+    Book getBookById(String id);
 
     void insertUser(User user);
 
