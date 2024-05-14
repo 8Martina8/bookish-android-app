@@ -117,6 +117,29 @@ public class Book {
         private Price retailPrice;
         private String buyLink;
 
+        public String getCountry() {
+            return country;
+        }
+
+        public String getSaleability() {
+            return saleability;
+        }
+
+        public boolean isEbook() {
+            return isEbook;
+        }
+
+        public Price getListPrice() {
+            return listPrice;
+        }
+
+        public Price getRetailPrice() {
+            return retailPrice;
+        }
+
+        public String getBuyLink() {
+            return buyLink;
+        }
     }
 
     public static class AccessInfo {
@@ -129,6 +152,29 @@ public class Book {
         private Pdf pdf;
         private String accessViewStatus;
 
+        public String getCountry() {
+            return country;
+        }
+
+        public String getViewability() {
+            return viewability;
+        }
+
+        public boolean isPublicDomain() {
+            return publicDomain;
+        }
+
+        public Epub getEpub() {
+            return epub;
+        }
+
+        public Pdf getPdf() {
+            return pdf;
+        }
+
+        public String getAccessViewStatus() {
+            return accessViewStatus;
+        }
     }
 
 //    public static class IndustryIdentifier implements Serializable {
@@ -150,22 +196,60 @@ public class Book {
         private String medium;
         private String large;
         private String extraLarge;
+
+        public String getSmallThumbnail() {
+            return smallThumbnail;
+        }
+
+        public String getThumbnail() {
+            return thumbnail;
+        }
+
+        public String getSmall() {
+            return small;
+        }
+
+        public String getMedium() {
+            return medium;
+        }
+
+        public String getLarge() {
+            return large;
+        }
+
+        public String getExtraLarge() {
+            return extraLarge;
+        }
     }
 
     public static class Price {
         private double amount;
         private String currencyCode;
 
+        public double getAmount() {
+            return amount;
+        }
+
+        public String getCurrencyCode() {
+            return currencyCode;
+        }
     }
 
     public static class Epub {
         private boolean isAvailable;
         //private String acsTokenLink;
 
+
+        public boolean isAvailable() {
+            return isAvailable;
+        }
     }
 
     public static class Pdf{
         private boolean isAvailable;
 
+        public boolean isAvailable() {
+            return isAvailable;
+        }
     }
 }
