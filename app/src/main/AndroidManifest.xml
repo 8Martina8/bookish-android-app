@@ -53,7 +53,7 @@
             android:exported="false"></activity>
         <activity
             android:name=".search.view.SearchActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".home.view.HomeActivity"
             android:exported="false" />
