@@ -15,8 +15,8 @@ public class MusicService extends Service {
     private MediaPlayer player;
 
     public void onCreate() {
-//        player = MediaPlayer.create(getApplicationContext(), R.raw.click);
-//        player.setLooping(false);
+        player = MediaPlayer.create(getApplicationContext(), R.raw.click);
+        player.setLooping(false);
     }
     public int onStartCommand(Intent intent, int flags, int startId) {
         player.start();
