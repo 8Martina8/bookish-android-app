@@ -95,6 +95,8 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 funnyLoader.setVisibility(View.VISIBLE);
+                funnyLoader.start();
+
                 searchBooks(query);
                 searchView.clearFocus();
                 return true;
@@ -200,6 +202,7 @@ public class SearchActivity extends AppCompatActivity {
                     books = (ArrayList<Book>) searchedBooks;
                     updateSearchResults();
 
+                    funnyLoader.stop();
                     funnyLoader.setVisibility(View.INVISIBLE);
                 } else {
                     toast("No Result!");
