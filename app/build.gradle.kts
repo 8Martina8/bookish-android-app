@@ -94,5 +94,5 @@ dependencies {
     implementation ("androidx.room:room-runtime:$roomVersion")
     annotationProcessor ("androidx.room:room-compiler:$roomVersion")
 
-
+    implementation("io.supercharge:funnyloader:0.2.0")
 }
