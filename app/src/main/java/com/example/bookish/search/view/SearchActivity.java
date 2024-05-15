@@ -105,7 +105,6 @@ public class SearchActivity extends AppCompatActivity {
             }
             @Override
             public void onBeginningOfSpeech() {
-                toast("Started recording.");
             }
             @Override
             public void onRmsChanged(float rmsdB) {
@@ -117,7 +116,7 @@ public class SearchActivity extends AppCompatActivity {
             }
             @Override
             public void onEndOfSpeech() {
-                toast("stopped");
+                micImageView.setImageResource(R.drawable.baseline_mic_24);
             }
             @Override
             public void onError(int error) {
@@ -142,15 +141,13 @@ public class SearchActivity extends AppCompatActivity {
 
         micImageView = findViewById(R.id.voice_search_iv);
         micImageView.setOnTouchListener((v, event) -> {
-            toast("Touched.");
             if (event.getAction() == MotionEvent.ACTION_UP) {
                 speechRecognizer.stopListening();
-                toast("Touched up.");
             }
 
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 speechRecognizer.startListening(speechIntent);
-                toast("Touched down.");
+                micImageView.setImageResource(R.drawable.baseline_mic_pressed);
             }
 
             return false;
