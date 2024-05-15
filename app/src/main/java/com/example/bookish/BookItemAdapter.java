@@ -69,18 +69,6 @@ public class BookItemAdapter extends RecyclerView.Adapter<BookItemAdapter.MyView
                     .apply(new RequestOptions()
                             .placeholder(R.drawable.book_placeholder)
                             .error(R.drawable.baseline_broken_image_24))
-                    .listener(new RequestListener<Drawable>() {
-                        @Override
-                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                            Log.e("Glide", "Error loading image", e);
-                            return false;
-                        }
-
-                        @Override
-                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                            return false;
-                        }
-                    })
                     .into(holder.imgView);
 
             // Set item click listener
@@ -88,11 +76,11 @@ public class BookItemAdapter extends RecyclerView.Adapter<BookItemAdapter.MyView
                 if (onItemClickListener != null) {
                     // Invoke onItemClick with the current data item
                     onItemClickListener.onItemClick(currentBook);
-
-                    // Open details activity and send currentBook as an intent
-                    Intent intent = new Intent(context, DetailsActivity.class);
-                    intent.putExtra("BOOK", currentBook);
-                    context.startActivity(intent);
+//
+//                    // Open details activity and send currentBook as an intent
+//                    Intent intent = new Intent(context, DetailsActivity.class);
+//                    intent.putExtra("BOOK", currentBook);
+//                    context.startActivity(intent);
                 }
             });
         }

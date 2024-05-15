@@ -223,7 +223,7 @@ public class Book implements Serializable {
         }
     }
 
-    public static class Price {
+    public static class Price implements Serializable{
         private double amount;
         private String currencyCode;
 

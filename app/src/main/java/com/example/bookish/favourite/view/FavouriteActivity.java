@@ -49,9 +49,9 @@ public class FavouriteActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-//        //get current user id
-//        sharedPreferences = this.getSharedPreferences("BookPrefs", Context.MODE_PRIVATE);
-//        currentUserId = sharedPreferences.getInt("userId", -1);
+        //get current user id
+        sharedPreferences = this.getSharedPreferences("BookPrefs", Context.MODE_PRIVATE);
+        currentUserId = sharedPreferences.getInt("userId", -1);
 //        favouriteViewModel = new ViewModelProvider(this).get(FavouriteViewModel.class);
 //        // Get the LiveData from ViewModel
 //        favoriteBooksLiveData = favouriteViewModel.getFavoriteBooks(1);
