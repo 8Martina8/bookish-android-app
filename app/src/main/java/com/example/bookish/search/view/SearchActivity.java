@@ -32,6 +32,9 @@ import com.example.bookish.data.models.Book;
 import com.example.bookish.data.models.BooksResponse;
 import com.example.bookish.data.network.ApiClient;
 import com.example.bookish.data.network.RemoteDataSource;
+import com.example.bookish.favourite.view.FavouriteActivity;
+import com.example.bookish.home.view.HomeActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -150,6 +153,23 @@ public class SearchActivity extends AppCompatActivity {
                 micImageView.setImageResource(R.drawable.baseline_mic_pressed);
             }
 
+            return false;
+        });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setSelectedItemId(R.id.bottom_search);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.bottom_home) {
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                return true;
+            } else if (itemId == R.id.bottom_search) {
+                startActivity(new Intent(getApplicationContext(), SearchActivity.class));
+                return true;
+            } else if (itemId == R.id.bottom_favourite) {
+                startActivity(new Intent(getApplicationContext(), FavouriteActivity.class));
+                return true;
+            }
             return false;
         });
     }

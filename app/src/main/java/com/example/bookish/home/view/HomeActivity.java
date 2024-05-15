@@ -26,6 +26,9 @@ import com.example.bookish.data.models.BooksResponse;
 import com.example.bookish.data.network.ApiClient;
 import com.example.bookish.data.network.RemoteDataSource;
 import com.example.bookish.details.view.DetailsActivity;
+import com.example.bookish.favourite.view.FavouriteActivity;
+import com.example.bookish.search.view.SearchActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 import java.util.Random;
@@ -163,6 +166,24 @@ public class HomeActivity extends AppCompatActivity {
 //            Book book = bookRepo.getBookById(bookID);
 //            Log.d("TestingDB", "Favorite Book retreived: "+ book);
 
+
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setSelectedItemId(R.id.bottom_home);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.bottom_home) {
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                return true;
+            } else if (itemId == R.id.bottom_search) {
+                startActivity(new Intent(getApplicationContext(), SearchActivity.class));
+                return true;
+            } else if (itemId == R.id.bottom_favourite) {
+                startActivity(new Intent(getApplicationContext(), FavouriteActivity.class));
+                return true;
+            }
+            return false;
+        });
 
     }
 
