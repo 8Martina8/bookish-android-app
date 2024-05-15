@@ -64,7 +64,7 @@ public class SignInActivity extends AppCompatActivity {
 
                 if (retrievedUser != null && retrievedUser.getPassword().equals(password)) {
                     Toast.makeText(SignInActivity.this, "Sign In Successful!", Toast.LENGTH_SHORT).show();
-                    saveUserIdToSharedPreferences(user.getUserID());
+                    saveUserIdToSharedPreferences(retrievedUser.getUserID());
                     Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
                     startActivity(intent);
                 } else {
