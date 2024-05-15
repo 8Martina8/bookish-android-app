@@ -1,6 +1,7 @@
 package com.example.bookish.details.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.example.bookish.R;
 import com.example.bookish.data.local.LocalDatabaseImpl;
 import com.example.bookish.data.models.Book;
 import com.example.bookish.data.models.UserFavBooks;
+import com.example.bookish.favourite.MusicService;
 import com.example.bookish.home.view.HomeActivity;
 
 public class DetailsActivity extends AppCompatActivity {
@@ -97,15 +99,20 @@ public class DetailsActivity extends AppCompatActivity {
         checkBoxFav.setChecked(isFav);
 
         checkBoxFav.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 if (isChecked) {
+                    Intent i = new Intent(getApplicationContext(), MusicService.class);
+                    startService(i);
                     localDatabase.insertIntoFavBooks(new UserFavBooks(currentUserId, book.getId()));
                 } else {
                     localDatabase.deleteFromFavBooks(new UserFavBooks(currentUserId, book.getId()));
                     Toast.makeText(DetailsActivity.this, "The book is removed from favourites", Toast.LENGTH_SHORT).show();
                 }
             }
+
         });
     }
 }
