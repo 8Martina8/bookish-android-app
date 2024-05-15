@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HalfPressableSentence">
+        <attr name="regularText" format="string"/>
+        <attr name="clickableText" format="string"/>
+        <attr name="clickableTextColor" format="color"/>
+    </declare-styleable>
+</resources>

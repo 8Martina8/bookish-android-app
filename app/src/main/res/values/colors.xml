@@ -3,4 +3,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="book_item_bg">#f9f1f5</color>
+    <color name="main_book_bg">#f0fafa</color>
 </resources>
