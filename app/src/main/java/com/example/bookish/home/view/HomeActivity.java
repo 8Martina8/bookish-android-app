@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.bookish.AboutUsActivity;
 import com.example.bookish.BookItemAdapter;
 import com.example.bookish.R;
 import com.example.bookish.data.local.LocalDatabaseImpl;
@@ -181,7 +182,10 @@ public class HomeActivity extends AppCompatActivity {
             } else if (itemId == R.id.bottom_favourite) {
                 startActivity(new Intent(getApplicationContext(), FavouriteActivity.class));
                 return true;
-            }
+            }else if (itemId == R.id.bottom_profile) {
+                startActivity(new Intent(getApplicationContext(), AboutUsActivity.class));
+                return true;}
+
             return false;
         });
 
