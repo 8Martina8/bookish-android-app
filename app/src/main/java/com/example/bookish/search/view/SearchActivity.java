@@ -9,6 +9,7 @@ import android.speech.SpeechRecognizer;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -32,6 +34,7 @@ import com.example.bookish.data.models.Book;
 import com.example.bookish.data.models.BooksResponse;
 import com.example.bookish.data.network.ApiClient;
 import com.example.bookish.data.network.RemoteDataSource;
+import com.example.bookish.fragments.MicFragment;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -53,6 +56,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private SpeechRecognizer speechRecognizer;
     private ImageView micImageView;
+    MicFragment fragment;
 
     @SuppressLint({"NotifyDataSetChanged", "ClickableViewAccessibility"})
     @Override
@@ -77,6 +81,8 @@ public class SearchActivity extends AppCompatActivity {
 
         searchView = findViewById(R.id.booksSearchView);
         searchView.clearFocus();
+
+        fragment = MicFragment.newInstance();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -128,6 +134,7 @@ public class SearchActivity extends AppCompatActivity {
                 if (text != null && !text.isEmpty()) {
                     searchView.setQuery(text.get(0), true);
                 } else toast("no text");
+                fragment.dismiss();
             }
             @Override
             public void onPartialResults(Bundle partialResults) {
@@ -148,6 +155,8 @@ public class SearchActivity extends AppCompatActivity {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 speechRecognizer.startListening(speechIntent);
                 micImageView.setImageResource(R.drawable.baseline_mic_pressed);
+
+                fragment.show(getSupportFragmentManager(), "voice_capture_fragment");
             }
 
             return false;
