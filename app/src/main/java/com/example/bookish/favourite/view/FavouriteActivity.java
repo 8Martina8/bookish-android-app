@@ -16,6 +16,7 @@ import com.example.bookish.adapters.BooksRecyclerViewAdapter;
 import com.example.bookish.data.local.LocalDatabaseImpl;
 import com.example.bookish.data.models.Book;
 import com.example.bookish.data.models.User;
+import com.example.bookish.data.models.UserFavBooks;
 import com.example.bookish.data.network.ApiClient;
 import com.example.bookish.data.network.RemoteDataSource;
 
@@ -46,7 +47,6 @@ public class FavouriteActivity extends AppCompatActivity {
         });
 
         localDatabase = new LocalDatabaseImpl(this);
-
         User retrievedUser = localDatabase.getUserByEmail("user@example.com");
         Log.d("TestingDB", "Retrieved user: " + retrievedUser.getEmail());
         List<String> favBooksIDs = localDatabase.getBooksIdsByUserId(retrievedUser.getUserID());
