@@ -9,7 +9,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.bookish.data.local.LocalDatabase;
+
 import com.example.bookish.data.local.LocalDatabaseImpl;
 import com.example.bookish.data.models.Book;
 import com.example.bookish.data.models.User;
