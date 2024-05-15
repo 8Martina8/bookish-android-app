@@ -1,7 +1,10 @@
 package com.example.bookish.login.view;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -60,6 +63,7 @@ public class SignInActivity extends AppCompatActivity {
 
                 if (retrievedUser != null && retrievedUser.getPassword().equals(password)) {
                     Toast.makeText(SignInActivity.this, "Sign In Successful!", Toast.LENGTH_SHORT).show();
+                    saveUserIdToSharedPreferences(user.getUserID());
                     Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
                     startActivity(intent);
                 } else {
@@ -70,6 +74,17 @@ public class SignInActivity extends AppCompatActivity {
 
 
 
+    }
+    private void saveUserIdToSharedPreferences(Integer userId) {
+        SharedPreferences sharedPreferences = SignInActivity.this.getSharedPreferences("BookPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("userId", userId != null ? userId : -1);
+        editor.putBoolean("isUserLoggedIn", true);
+        editor.apply();
+
+        if (userId != null) {
+            Log.d("SharedPreferences", "Saved userId: " + userId);
+        }
     }
     private boolean validateInput(String email, String password) {
         if (email.isEmpty()) {
