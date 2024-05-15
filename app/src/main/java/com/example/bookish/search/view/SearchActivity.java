@@ -44,6 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import io.supercharge.funnyloader.FunnyLoader;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,6 +61,7 @@ public class SearchActivity extends AppCompatActivity {
     private SpeechRecognizer speechRecognizer;
     private ImageView micImageView;
     MicFragment fragment;
+    FunnyLoader funnyLoader;
 
     @SuppressLint({"NotifyDataSetChanged", "ClickableViewAccessibility"})
     @Override
@@ -73,6 +75,8 @@ public class SearchActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        funnyLoader = findViewById(R.id.loader_text_view);
 
         apiClient = new ApiClient();
 
@@ -90,6 +94,9 @@ public class SearchActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                funnyLoader.setVisibility(View.VISIBLE);
+                funnyLoader.start();
+
                 searchBooks(query);
                 searchView.clearFocus();
                 return true;
@@ -194,6 +201,9 @@ public class SearchActivity extends AppCompatActivity {
 
                     books = (ArrayList<Book>) searchedBooks;
                     updateSearchResults();
+
+                    funnyLoader.stop();
+                    funnyLoader.setVisibility(View.INVISIBLE);
                 } else {
                     toast("No Result!");
                 }
