@@ -1,11 +1,18 @@
 package com.example.bookish.search.view;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,25 +33,28 @@ import com.example.bookish.data.models.BooksResponse;
 import com.example.bookish.data.network.ApiClient;
 import com.example.bookish.data.network.RemoteDataSource;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SearchActivity extends AppCompatActivity {
-    private LocalDatabaseImpl localDatabase;
     private RemoteDataSource apiClient;
 
     private RecyclerView recyclerView;
     private BooksRecyclerViewAdapter adapter;
     private ArrayList<Book> books;
 
-    private Button searchBtn;
-    private EditText searchQueryET;
+    private SearchView searchView;
 
-    @SuppressLint("NotifyDataSetChanged")
+    private SpeechRecognizer speechRecognizer;
+    private ImageView micImageView;
+
+    @SuppressLint({"NotifyDataSetChanged", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +67,6 @@ public class SearchActivity extends AppCompatActivity {
             return insets;
         });
 
-        localDatabase = new LocalDatabaseImpl(this);
         apiClient = new ApiClient();
 
         books = new ArrayList<>();
@@ -66,13 +75,82 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
-        searchQueryET = findViewById(R.id.searchQueryET);
+        searchView = findViewById(R.id.booksSearchView);
+        searchView.clearFocus();
 
-        searchBtn = findViewById(R.id.searchBooksBtn);
-        searchBtn.setOnClickListener(v -> {
-            String query = searchQueryET.getText().toString();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchBooks(query);
+                searchView.clearFocus();
+                return true;
+            }
 
-            searchBooks(query);
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+
+        final Intent speechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        speechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        speechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+
+        speechRecognizer.setRecognitionListener(new RecognitionListener() {
+            @Override
+            public void onReadyForSpeech(Bundle params) {
+
+            }
+            @Override
+            public void onBeginningOfSpeech() {
+            }
+            @Override
+            public void onRmsChanged(float rmsdB) {
+
+            }
+            @Override
+            public void onBufferReceived(byte[] buffer) {
+
+            }
+            @Override
+            public void onEndOfSpeech() {
+                micImageView.setImageResource(R.drawable.baseline_mic_24);
+            }
+            @Override
+            public void onError(int error) {
+
+            }
+            @Override
+            public void onResults(Bundle results) {
+                ArrayList<String> text = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                if (text != null && !text.isEmpty()) {
+                    searchView.setQuery(text.get(0), true);
+                } else toast("no text");
+            }
+            @Override
+            public void onPartialResults(Bundle partialResults) {
+
+            }
+            @Override
+            public void onEvent(int eventType, Bundle params) {
+
+            }
+        });
+
+        micImageView = findViewById(R.id.voice_search_iv);
+        micImageView.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                speechRecognizer.stopListening();
+            }
+
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                speechRecognizer.startListening(speechIntent);
+                micImageView.setImageResource(R.drawable.baseline_mic_pressed);
+            }
+
+            return false;
         });
     }
 
@@ -103,9 +181,16 @@ public class SearchActivity extends AppCompatActivity {
     private void updateSearchResults() {
         adapter.setBooks(books);
         adapter.notifyDataSetChanged();
+        recyclerView.scrollToPosition(0);
     }
 
     private void toast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        speechRecognizer.destroy();
     }
 }
