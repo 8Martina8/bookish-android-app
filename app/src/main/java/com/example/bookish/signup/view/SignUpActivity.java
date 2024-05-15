@@ -1,7 +1,12 @@
 package com.example.bookish.signup.view;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.bookish.R;
 import com.example.bookish.data.local.LocalDatabaseImpl;
 import com.example.bookish.data.models.User;
+import com.example.bookish.home.view.HomeActivity;
 import com.example.bookish.login.view.SignInActivity;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -48,6 +54,11 @@ public class SignUpActivity extends AppCompatActivity {
                 User user = new User(name, password, email);
                 localDatabase.insertUser(user);
                 Toast.makeText(SignUpActivity.this, "Sign Up Successful!", Toast.LENGTH_SHORT).show();
+                saveUserIdToSharedPreferences(user.getUserID());
+                Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish(); // Optional: finish SignUpActivity to prevent user from going back
+
             }
         });
     }
@@ -79,5 +90,16 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+    private void saveUserIdToSharedPreferences(Integer userId) {
+        SharedPreferences sharedPreferences = SignUpActivity.this.getSharedPreferences("BookPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("userId", userId != null ? userId : -1);
+        editor.putBoolean("isUserLoggedIn", true);
+        editor.apply();
+
+        if (userId != null) {
+            Log.d("SharedPreferences", "Saved userId: " + userId);
+        }
     }
 }
