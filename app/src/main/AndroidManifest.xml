@@ -21,8 +21,12 @@
             android:exported="false" />
         <activity
             android:name=".favourite.view.FavouriteActivity"
-            android:exported="false" >
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".search.view.SearchActivity"
@@ -31,12 +35,8 @@
         </activity>
         <activity
             android:name=".home.view.HomeActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false" >
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"

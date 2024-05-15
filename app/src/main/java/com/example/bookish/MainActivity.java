@@ -68,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
 //        Log.d("MainActivity", "Book exists: " + bookExists);
 //
 //        // Insert a user-favorite book relation
-        UserFavBooks userFavBooks = new UserFavBooks(1, "1234567890");
-        UserFavBooks userFavBook2 = new UserFavBooks(1, "feffef");
-        UserFavBooks userFavBook3 = new UserFavBooks(1, "wawawa");
+        UserFavBooks userFavBooks = new UserFavBooks(1, "FmwwDQAAQBAJ");
+        UserFavBooks userFavBook2 = new UserFavBooks(1, "iO5pApw2JycC");
+        UserFavBooks userFavBook3 = new UserFavBooks(1, "Aaug_RnI-xQC");
 
 
         localDatabase.insertIntoFavBooks(userFavBooks);
